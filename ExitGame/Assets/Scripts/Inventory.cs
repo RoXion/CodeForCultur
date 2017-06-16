@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour {
+public class Inventory : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,10 +13,4 @@ public class Test : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(0, 1000, 10000, 3200), "Vibrate!"))
-            Handheld.Vibrate();
-    }
 }
