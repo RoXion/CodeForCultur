@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class PhoneCamera : MonoBehaviour {
 
-    public WebCamTexture mCamera = null;
+    public WebCamTexture webCamCamera = null;
 
     public RawImage image;
-    public AspectRatioFitter fit;
 
 
     // Use this for initialization
@@ -27,20 +26,34 @@ public class PhoneCamera : MonoBehaviour {
 
         Debug.Log("Script has been started");
         
-        mCamera = new WebCamTexture(Screen.width, Screen.height);
+        webCamCamera = new WebCamTexture(Screen.width, Screen.height);
 
-        image.texture = mCamera;
+        image.texture = webCamCamera;
         
 
-        mCamera.Play();
+        webCamCamera.Play();
+
+        Camera cam = Camera.main;
+        float height = 2f * cam.orthographicSize;
+        float width = height * cam.aspect;
+        Debug.Log(Screen.width + " " + Screen.height);
     }
     
 
-    public void Screenshoz()
+    public void TakeScreenshot()
     {
-        /*Texture2D screenshot = new Texture2D(mCamera.width, mCamera.height);
-        screenshot.SetPixels(mCamera.GetPixels());
+        RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        Camera.main.targetTexture = renderTexture;
+        Camera.main.Render();
+        Camera.main.targetTexture = null;
+
+        Texture2D screenshot = new Texture2D(Screen.width, Screen.height);
+        //screenshot.SetPixels(webCamCamera.GetPixels());
+        //screenshot.Apply();
+
+        screenshot.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
         screenshot.Apply();
-        System.IO.File.WriteAllBytes("Path", screenshot.EncodeToPNG());*/
+        System.IO.File.WriteAllBytes(Application.persistentDataPath + "/Snapshots/test.png", screenshot.EncodeToPNG());
+        
     }
 }
