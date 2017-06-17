@@ -6,19 +6,19 @@ using UnityEngine;
 public class Textbox : MonoBehaviour
 {
     [SerializeField]
-    private string[] textLines;
+    protected string[] textLines;
 
     [SerializeField]
     [Range(0.01f, 0.05f)]
-    private float delayBetweenLetter = 0.03f;
+    protected float delayBetweenLetter = 0.03f;
 
     [SerializeField]
-    private TextMeshProUGUI textbox;
+    protected TextMeshProUGUI textbox;
 
     [SerializeField]
-    private GameObject BackgroundButton;
+    protected GameObject BackgroundButton;
 
-    private int currentMessageIndex;
+    protected int currentMessageIndex;
 
 	// Use this for initialization
 	void Start ()
@@ -27,7 +27,7 @@ public class Textbox : MonoBehaviour
 	}
 
 
-    IEnumerator WriteTextInTextbox()
+    protected virtual IEnumerator WriteTextInTextbox()
     {
 
         foreach (char letter in textLines[currentMessageIndex].ToCharArray())
@@ -38,11 +38,11 @@ public class Textbox : MonoBehaviour
         }
     }
 
-    public void ShowNextMessage()
+    public virtual void ShowNextMessage()
     {
         StopCoroutine(WriteTextInTextbox());
 
-        if (currentMessageIndex < textLines.Length - 1)
+        if (currentMessageIndex <= textLines.Length - 1)
         {
             textbox.text = "";
             StartCoroutine(WriteTextInTextbox());

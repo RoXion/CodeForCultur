@@ -40,7 +40,7 @@ public class TextManager : MonoBehaviour
     public void DisplayMessage (string message, Color textColor, float delay)
     {
         float startTime = Time.time + delay;
-        float displayDuration = message.Length * displayTimePerCharacter + additionalDisplayTime;
+        float displayDuration = 3f;//message.Length * displayTimePerCharacter + additionalDisplayTime;
         float newClearTime = startTime + displayDuration;
 
         if (newClearTime > clearTime)

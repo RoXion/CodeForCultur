@@ -12,13 +12,12 @@ public class TextReaction : Reaction
 
     protected override void SpecificInit()
     {
-        //textManager = FindObjectOfType<TextManager> ();
+        textManager = FindObjectOfType<TextManager> ();
     }
 
 
     protected override void ImmediateReaction()
     {
-        //textManager.DisplayMessage (message, textColor, delay);
-        Debug.Log(message);
+        textManager.DisplayMessage (message, textColor, delay);
     }
 }
