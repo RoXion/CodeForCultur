@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BigGladiatorCheat : MonoBehaviour {
 
@@ -9,7 +9,9 @@ public class BigGladiatorCheat : MonoBehaviour {
     public GameObject littleGladiators;
 
     public Inventory inventory;
-    public Item Item;
+
+    public Item item;
+    public Sprite swordsprite;
 
     // Use this for initialization
     void Start () {
@@ -22,7 +24,10 @@ public class BigGladiatorCheat : MonoBehaviour {
     {
         littleGladiators.SetActive(true);
 
-        inventory.AddItem(Item);
+        //item = new Item();
+        //item.sprite = swordsprite;
+
+        inventory.AddItem(item);
     }
 
 }
